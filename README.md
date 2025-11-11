@@ -4,6 +4,6 @@
 </div>
 
 <p align="center">
-    <img src="static/diagrams/system_architecture.png" alt="Architecture" width="500">
+    <img src="static/diagrams/system_architecture.png" alt="Architecture" width="600">
 </p>
 
