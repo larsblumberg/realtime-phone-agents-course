@@ -43,6 +43,7 @@ class RunPodSettings(BaseModel):
     orpheus_pod_url: str = Field(default="", description="Orpheus Pod URL")
     faster_whisper_model: str = Field(default="Systran/faster-whisper-large-v3")
     faster_whisper_gpu_type: str = Field(default="NVIDIA GeForce RTX 4090", description="Faster Whisper GPU Type")
+    orpheus_gpu_type: str = Field(default="NVIDIA GeForce RTX 5090", description="Orpheus GPU Type")
 
 
 # --- Orpheus TTS Configuration ---
