@@ -5,6 +5,9 @@ on:
       branches: [main]
     workflow_dispatch:
 
+env:
+  FASTER_WHISPER_MODEL: Systran/faster-whisper-large-v3
+
 jobs:
     build-and-push:
         name: Build and Push Faster Whisper Image to Docker Hub
@@ -24,5 +27,5 @@ jobs:
 
             - name: Build and Push Faster Whisper Image to Docker Hub
               run: |
-                docker build --platform linux/amd64 -f Dockerfile.faster_whisper -t ${{ secrets.FASTER_WHISPER_DOCKER_REPO }}:${{ secrets.DOCKER_TAG }} .
+                docker build --platform linux/amd64 -f Dockerfile.faster_whisper --build-arg FASTER_WHISPER_MODEL=${{ env.FASTER_WHISPER_MODEL }} -t ${{ secrets.FASTER_WHISPER_DOCKER_REPO }}:${{ secrets.DOCKER_TAG }} .
                 docker push ${{ secrets.FASTER_WHISPER_DOCKER_REPO }}:${{ secrets.DOCKER_TAG }}

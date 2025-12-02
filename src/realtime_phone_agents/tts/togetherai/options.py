@@ -4,7 +4,6 @@ from pydantic import BaseModel, Field
 
 from realtime_phone_agents.config import settings
 
-
 # Default voices per model
 DEFAULT_VOICES = {
     "canopylabs/orpheus-3b-0.1-ft": "tara",

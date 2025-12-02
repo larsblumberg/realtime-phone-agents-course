@@ -1,14 +1,12 @@
 # This code comes from the official Orpheus 3B repository by canopylabs
 # Source: https://github.com/canopyai/Orpheus-TTS/blob/main/orpheus_tts_pypi/orpheus_tts/decoder.py
 
+import asyncio
+import queue
 import threading
 
 import numpy as np
-
 import torch
-import asyncio
-import queue
-
 from snac import SNAC
 
 model = SNAC.from_pretrained("hubertsiuzdak/snac_24khz").eval()

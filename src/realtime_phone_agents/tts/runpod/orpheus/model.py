@@ -8,24 +8,24 @@ Original Repository: https://github.com/KoljaB/RealtimeTTS
 License: MIT
 """
 
-import json
-import time
 import asyncio
+import json
 import threading
+import time
 import traceback
-from typing import Optional, Generator, AsyncGenerator
-from loguru import logger
+from typing import AsyncGenerator, Generator, Optional
 
-import requests
 import numpy as np
+import requests
+from loguru import logger
 from numpy.typing import NDArray
 
-from realtime_phone_agents.tts.models.base import TTSModel
-from realtime_phone_agents.tts.models.orpheus_runpod.options import (
-    OrpheusTTSOptions,
+from realtime_phone_agents.tts.base import TTSModel
+from realtime_phone_agents.tts.runpod.orpheus.options import (
     CUSTOM_TOKEN_PREFIX,
+    OrpheusTTSOptions,
 )
-from realtime_phone_agents.tts.models.orpheus_runpod.token_decoders import (
+from realtime_phone_agents.tts.runpod.orpheus.token_decoders import (
     convert_to_audio,
 )
 
@@ -97,7 +97,7 @@ class OrpheusTTSModel(TTSModel):
                 headers=options.headers,
                 json=payload,
                 stream=True,
-                timeout=30,
+                timeout=None,
             )
             response.raise_for_status()
 
@@ -308,7 +308,7 @@ class OrpheusTTSModel(TTSModel):
         self,
         text: str,
         options: OrpheusTTSOptions | None = None,
-    ) -> bytes:
+    ) -> tuple[int, NDArray[np.int16]]:
         """
         Perform complete text-to-speech conversion (async).
 
@@ -337,7 +337,7 @@ class OrpheusTTSModel(TTSModel):
         else:
             audio = np.zeros(0, dtype=np.int16)
 
-        return audio.tobytes()
+        return sample_rate, audio
 
     def tts_blocking(
         self,

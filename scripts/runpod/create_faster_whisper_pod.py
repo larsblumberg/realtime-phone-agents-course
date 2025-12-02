@@ -1,8 +1,13 @@
+import time
+
+import requests
+
 import runpod
 from realtime_phone_agents.config import settings
 
 runpod.api_key = settings.runpod.api_key
 
+print("Creating Faster Whisper pod...")
 pod = runpod.create_pod(
     name="Faster Whisper Server",
     image_name="theneuralmaze/faster-whisper-server:latest",
@@ -14,4 +19,13 @@ pod = runpod.create_pod(
     ports="8000/http",
 )
 
-print(f"Pod created: {pod.get('id')}")
+pod_id = pod.get("id")
+pod_url = f"https://{pod_id}-8000.proxy.runpod.net"
+
+print(f"Pod created: {pod_id}")
+print(f"Pod URL: {pod_url}")
+
+print(f"\n{'='*60}")
+print("Add the following to your .env file:")
+print(f"FASTER_WHISPER__API_URL={pod_url}")
+print(f"{'='*60}\n")

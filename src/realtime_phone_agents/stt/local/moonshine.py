@@ -1,5 +1,6 @@
 from fastrtc import get_stt_model
-from realtime_phone_agents.stt.models.base import STTModel
+
+from realtime_phone_agents.stt.base import STTModel
 
 
 class MoonshineSTT(STTModel):

@@ -5,17 +5,13 @@ from typing import Union
 class STTModel(ABC):
     """
     Abstract base class for Speech-to-Text models.
-    
+
     All STT model implementations must inherit from this class
     and implement the stt method.
     """
 
     @abstractmethod
-    async def stt(
-        self,
-        audio_data: Union[bytes, str],
-        **kwargs
-    ) -> str:
+    async def stt(self, audio_data: Union[bytes, str], **kwargs) -> str:
         """
         Convert speech audio to text.
 

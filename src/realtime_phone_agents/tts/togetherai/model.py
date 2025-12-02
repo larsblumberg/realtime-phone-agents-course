@@ -16,21 +16,21 @@ Supported models via Together AI:
 import asyncio
 import threading
 import traceback
-from typing import Generator, AsyncGenerator
+from typing import AsyncGenerator, Generator
 
 import httpx
 import numpy as np
-from numpy.typing import NDArray
 from loguru import logger
+from numpy.typing import NDArray
 
-from realtime_phone_agents.tts.models.base import TTSModel
-from realtime_phone_agents.tts.models.together.options import (
-    TogetherTTSOptions,
+from realtime_phone_agents.tts.base import TTSModel
+from realtime_phone_agents.tts.togetherai.options import (
     DEFAULT_VOICES,
+    TogetherTTSOptions,
 )
 
 
-class TogetherTTS(TTSModel):
+class TogetherTTSModel(TTSModel):
     """
     Client for Together AI's TTS API using streaming REST.
 
@@ -273,7 +273,7 @@ class TogetherTTS(TTSModel):
         self,
         text: str,
         options: TogetherTTSOptions | None = None,
-    ) -> bytes:
+    ) -> tuple[int, NDArray[np.int16]]:
         """
         Perform complete text-to-speech conversion (blocking).
 
@@ -302,7 +302,7 @@ class TogetherTTS(TTSModel):
         else:
             audio = np.zeros(0, dtype=np.int16)
 
-        return audio.tobytes()
+        return sample_rate, audio
 
     async def tts_async(
         self,

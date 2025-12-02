@@ -1,6 +1,6 @@
 from fastrtc import get_tts_model
 
-from realtime_phone_agents.tts.models.base import TTSModel
+from realtime_phone_agents.tts.base import TTSModel
 
 
 class KokoroTTSModel(TTSModel):
