@@ -8,7 +8,8 @@ services:
       - "8000:8000"
     volumes:
       - ./data:/app/data
-      - sentence_transformers_cache:/root/.cache/huggingface
+      - huggingface_cache:/root/.cache/huggingface
+      - sentence_transformers_cache:/root/.cache/sentence-transformers
     env_file:
       - .env
     healthcheck:
@@ -46,6 +47,7 @@ services:
 
 volumes:
   qdrant_data:
+  huggingface_cache:
   sentence_transformers_cache:
 
 networks:

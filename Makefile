@@ -34,7 +34,7 @@ create-orpheus-pod:
 
 # --- Run Gradio ---
 
-start-gradio-application:
+start-gradio-application: start-call-center
 	docker compose run --build --rm -p 7860:7860 -e GRADIO_SERVER_NAME="0.0.0.0" phone-calling-agent-api uv run python -m realtime_phone_agents.gradio_app
 
 # --- Application Local Deployment ---
