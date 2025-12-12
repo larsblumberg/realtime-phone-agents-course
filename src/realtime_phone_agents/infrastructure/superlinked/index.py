@@ -1,3 +1,4 @@
+from loguru import logger
 from superlinked import framework as sl
 
 from realtime_phone_agents.config import settings
@@ -17,9 +18,14 @@ class Property(sl.Schema):
 
 property_schema = Property()
 
-
+logger.info(
+    f"📥 Loading embedding model '{settings.superlinked.embedding_model}' for property search..."
+)
 description_space = sl.TextSimilaritySpace(
     text=property_schema.description, model=settings.superlinked.embedding_model
+)
+logger.info(
+    f"✅ Embedding model '{settings.superlinked.embedding_model}' loaded successfully"
 )
 
 size_space = sl.NumberSpace(
