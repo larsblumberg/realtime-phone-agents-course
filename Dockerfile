@@ -3,10 +3,10 @@ FROM python:3.11-slim
 # Install uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
-RUN apt-get update && \
-    apt-get install -y ffmpeg libgl1 && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt/lists,sharing=locked \
+    apt-get update && \
+    apt-get install -y ffmpeg libgl1
 
 WORKDIR /app
 
