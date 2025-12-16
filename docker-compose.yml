@@ -23,11 +23,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '4' 
-          memory: 4G   
+          cpus: '16'
+          memory: 16G
         reservations:
-          cpus: '4'    
-          memory: 4G   
+          cpus: '16'
+          memory: 16G
     depends_on:
       - qdrant
 
