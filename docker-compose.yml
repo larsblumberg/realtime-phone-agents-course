@@ -9,6 +9,7 @@ services:
     volumes:
       - ./data:/app/data
       - sentence_transformers_cache:/root/.cache/huggingface
+      - ./scripts:/app/scripts
     env_file:
       - .env
     environment:

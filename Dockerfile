@@ -12,9 +12,10 @@ WORKDIR /app
 
 # Python deps
 COPY uv.lock pyproject.toml README.md ./
-RUN uv sync --frozen --no-cache
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --frozen --link-mode=copy
 
 # App code
-COPY src/realtime_phone_agents realtime_phone_agents/
+COPY src src/
 
 CMD ["/app/.venv/bin/uvicorn", "realtime_phone_agents.api.main:app", "--host", "0.0.0.0", "--port", "8000", "--loop", "asyncio"]

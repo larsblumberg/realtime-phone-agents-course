@@ -1,7 +1,5 @@
 import time
 
-import requests
-
 import runpod
 from realtime_phone_agents.config import settings
 

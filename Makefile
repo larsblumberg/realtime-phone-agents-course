@@ -26,13 +26,10 @@ lint-check:
 # --- RunPod ---
 
 create-faster-whisper-pod:
-	uv run python scripts/runpod/create_faster_whisper_pod.py
+	docker compose run --build --rm phone-calling-agent-api uv run python scripts/runpod/create_faster_whisper_pod.py
 
 create-orpheus-pod:
-	uv run python scripts/runpod/create_orpheus_pod.py
-
-create-call-center-pod:
-	uv run python scripts/runpod/create_call_center_pod.py
+	docker compose run --build --rm phone-calling-agent-api uv run python scripts/runpod/create_orpheus_pod.py
 
 
 # --- Run Gradio ---
