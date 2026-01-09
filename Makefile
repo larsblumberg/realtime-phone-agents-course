@@ -31,6 +31,9 @@ create-faster-whisper-pod:
 create-orpheus-pod:
 	docker compose run --build --rm phone-calling-agent-api uv run python scripts/runpod/create_orpheus_pod.py
 
+create-call-center-pod:
+	docker compose run --build --rm phone-calling-agent-api uv run python scripts/runpod/create_call_center_pod.py
+
 
 # --- Run Gradio ---
 

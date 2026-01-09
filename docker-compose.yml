@@ -7,8 +7,9 @@ services:
     ports:
       - "8000:8000"
     volumes:
+      - huggingface_cache:/root/.cache/huggingface
+      - sentence_transformers_cache:/root/.cache/sentence-transformers
       - ./data:/app/data
-      - sentence_transformers_cache:/root/.cache/huggingface
       - ./scripts:/app/scripts
     env_file:
       - .env
@@ -52,8 +53,9 @@ services:
       - phone-calling-agent-network
 
 volumes:
-  qdrant_data:
+  huggingface_cache:
   sentence_transformers_cache:
+  qdrant_data:
 
 networks:
   phone-calling-agent-network:
