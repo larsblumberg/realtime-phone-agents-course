@@ -12,6 +12,7 @@ pod = runpod.create_pod(
     name="Faster Whisper Server",
     image_name="theneuralmaze/faster-whisper-server:latest",
     gpu_type_id=settings.runpod.faster_whisper_gpu_type,
+    allowed_cuda_versions=["12.6", "12.7", "12.8", "12.9"],
     cloud_type="SECURE",
     gpu_count=1,
     volume_in_gb=20,
