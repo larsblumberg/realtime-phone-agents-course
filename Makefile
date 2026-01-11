@@ -43,7 +43,7 @@ start-gradio-application:
 # --- Qdrant Cloud Ingestion ---
 
 ingest-properties:
-	uv run python scripts/ingest_properties.py
+	docker compose run --build --rm phone-calling-agent-api uv run python scripts/ingest_properties.py
 
 # --- Outbound Calls ---
 
